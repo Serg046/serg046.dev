@@ -1,0 +1,84 @@
+﻿@page "/"
+@using System.Net.Http.Headers
+@inject PersistentComponentState ApplicationState
+@inject IOptions<AppSettings> AppSettings
+
+<h1>Hello, world!</h1>
+<p>See my contributions in 2020:</p>
+@if (_contributionsCollection?.PullRequestContributions?.Nodes != null)
+{
+    @foreach (var item in _contributionsCollection.PullRequestContributions.Nodes)
+    {
+        <div style="margin-bottom: 12px">
+            <div>@item?.PullRequest?.CreatedAt: @item?.PullRequest?.Title</div>
+            <a href="@item?.PullRequest?.Url">@item?.PullRequest?.Url</a>
+            <div>Repo stars: @item?.PullRequest?.Repository?.StargazerCount</div>
+        </div>
+    }
+}
+
+@code {
+    private ContributionsCollection? _contributionsCollection;
+    private PersistingComponentStateSubscription _subscription;
+
+    public void Dispose() => _subscription.Dispose();
+
+    protected async override Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        _subscription = ApplicationState.RegisterOnPersisting(() =>
+        {
+            ApplicationState.PersistAsJson("contributions", _contributionsCollection);
+            return Task.CompletedTask;
+        });
+        if (ApplicationState.TryTakeFromJson<ContributionsCollection>("contributions", out var stored))
+        {
+            _contributionsCollection = stored;
+        }
+        else
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.TryParseAdd("request");
+            client.DefaultRequestHeaders.Authorization = new("Bearer", AppSettings.Value.GitHubToken);
+            var response = await client.PostAsJsonAsync("https://api.github.com/graphql", new
+            {
+                query =
+    @"query 
+    {
+        user(login: ""Serg046"") 
+        {
+            contributionsCollection(from: ""2020-01-01T00:00:00Z"", to: ""2021-01-01T00:00:00Z"")
+            {
+                pullRequestContributions(first: 100, orderBy: { direction: ASC })
+                {
+                    nodes 
+                    {
+                        pullRequest 
+                        {
+                            title
+                            url
+                            createdAt
+                            repository
+                            {
+                                stargazerCount
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }"});
+            var gql = await response.Content.ReadFromGqlAsync(new
+            {
+                Data = new
+                {
+                    User = new
+                    {
+                        ContributionsCollection = default(ContributionsCollection)
+                    }
+                }
+            });
+            _contributionsCollection = gql?.Data.User.ContributionsCollection;
+        }
+    }
+}
