@@ -1,6 +1,6 @@
 {
     "profiles": {
-      "serg046.dev.Server": {
+      "serg046.dev": {
         "commandName": "Project",
         "dotnetRunMessages": true,
         "launchBrowser": false,

@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "serg046.dev.Client": {
+    "serg046.dev": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

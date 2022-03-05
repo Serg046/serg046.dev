@@ -1,4 +1,4 @@
-﻿namespace serg046.dev.Client
+﻿namespace Client
 {
 	public class ContributionsCollection
 	{

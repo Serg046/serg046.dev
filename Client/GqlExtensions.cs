@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace serg046.dev.Client
+namespace Client
 {
 	public static class GqlExtensions
 	{

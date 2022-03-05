@@ -1,4 +1,4 @@
-using serg046.dev.Client;
+using Client;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
