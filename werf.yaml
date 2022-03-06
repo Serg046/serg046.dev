@@ -1,0 +1,6 @@
+project: serg046-app
+configVersion: 1
+
+---
+image: serg046-app
+dockerfile: Dockerfile
