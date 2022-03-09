@@ -4,7 +4,7 @@ COPY /Client/Client.csproj /app/Client/Client.csproj
 COPY /Server/Server.csproj /app/Server/Server.csproj
 RUN dotnet restore /app/Client/Client.csproj && dotnet restore /app/Server/Server.csproj
 COPY . .
-RUN dotnet publish -c Release -o out -r linux-64
+RUN dotnet publish -c Release -o out -r linux-x64
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
