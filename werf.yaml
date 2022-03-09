@@ -6,4 +6,4 @@ image: app
 dockerfile: Dockerfile
 shell:
   setup:
-  - "echo setup"
+  - echo setup
