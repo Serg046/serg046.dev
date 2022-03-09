@@ -17,6 +17,6 @@ RUN dotnet publish -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-RUN ls ..
+RUN ls ../app
 #RUN sed -i 's/\r$//' $app/start.sh  && chmod +x $app/start.sh
 ENTRYPOINT ["dotnet", "Server.dll"]
