@@ -1,12 +1,20 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
 COPY /Client/Client.csproj /app/Client/Client.csproj
 COPY /Server/Server.csproj /app/Server/Server.csproj
 RUN dotnet restore /app/Client/Client.csproj && dotnet restore /app/Server/Server.csproj
 COPY . .
-RUN dotnet publish -c Release -o out -r linux-x64
+RUN dotnet build -c Release -o /app/build
 
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM build AS publish
+RUN dotnet publish -c Release -o /app/publish
+
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/out .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Server.dll"]
