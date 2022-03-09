@@ -4,6 +4,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
+RUN sudo apt-get update
 RUN sudo apt-get install dos2unix --yes
 WORKDIR /src
 COPY /Client/Client.csproj /app/Client/Client.csproj
