@@ -7,4 +7,4 @@ spec:
     app: serg046-app-deployment
   ports:
   - name: http
-    port: 5005
+    port: 80
