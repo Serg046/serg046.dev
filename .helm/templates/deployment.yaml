@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: serg046-app
+  name: serg046-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: serg046-app
+      app: serg046-app-deployment
   template:
     metadata:
       labels:
-        app: serg046-app
+        app: serg046-app-deployment
     spec:
       imagePullSecrets:
       - name: registrysecret
