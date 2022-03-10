@@ -21,3 +21,4 @@ jobs:
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
         env:
           WERF_SET_ENV_URL: "envUrl=serg046.dev"
+          GitHubToken: ${{ secrets.GIT_HUB_TOKEN }}
