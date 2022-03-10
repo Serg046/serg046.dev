@@ -6,10 +6,10 @@ spec:
   rules:
   - http:
       paths:
-      - path: /ping
+      - path: /
         pathType: Prefix
         backend:
           service:
-            name: serg046-app
+            name: serg046-app-service
             port:
               number: 80
