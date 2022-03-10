@@ -17,6 +17,4 @@ RUN dotnet publish -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY start.sh .
-RUN chmod +x start.sh
 ENTRYPOINT ["dotnet", "Server.dll"]
