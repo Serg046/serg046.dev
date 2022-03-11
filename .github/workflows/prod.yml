@@ -15,7 +15,7 @@ jobs:
       - name: Inject GH secret
         env:
           GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
-        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
+        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
      
       - uses: actions/upload-artifact@v3
         with:
