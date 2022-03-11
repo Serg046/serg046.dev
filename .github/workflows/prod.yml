@@ -13,12 +13,12 @@ jobs:
           fetch-depth: 0
           
       - name: ls
-        run: ls
+        run: ls Server
           
       - name: Inject GH secret
         env:
           GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
-        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' serg046.dev/Server/appsettings.json
+        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
         
       - name: Converge
         uses: werf/actions/converge@v1.2
