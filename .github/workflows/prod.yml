@@ -12,14 +12,16 @@ jobs:
         with:
           fetch-depth: 0
           
-      - name: ls
-        run: ls Server
-          
       - name: Inject GH secret
         env:
           GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
         run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
-         
+     
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: Server/appsettings.json
+     
       - name: Install werf CLI  
         uses: werf/actions/install@v1.2
     
