@@ -3,12 +3,10 @@ on:
   push:
     branches: [master]
 jobs:
-
-  converge:
-    name: Converge
+  prepare:
+    name: Prepare
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -17,8 +15,12 @@ jobs:
       - name: Inject GH secret
         env:
           GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
-        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
-
+        run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' /Server/appsettings.json
+    
+  converge:
+    name: Converge
+    runs-on: ubuntu-latest
+    steps:
       - name: Converge
         uses: werf/actions/converge@v1.2
         with:
