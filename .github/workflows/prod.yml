@@ -19,11 +19,23 @@ jobs:
         env:
           GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
         run: perl -pi -e 's/\"GitHubToken\"\:\s\"\"/\"GitHubToken\"\:\s\"$ENV{GIT_HUB_TOKEN}\"/' Server/appsettings.json
-        
-      - name: Converge
-        uses: werf/actions/converge@v1.2
-        with:
-          env: production
-          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+         
+      - name: Install werf CLI  
+        uses: werf/actions/install@v1.2
+    
+      - name: Create kube config
+        run: |
+          KUBECONFIG=$(mktemp -d)/config
+          base64 -d <(printf "%s" $KUBE_CONFIG_BASE64_DATA) > $KUBECONFIG
+          echo KUBECONFIG=$KUBECONFIG >> $GITHUB_ENV
         env:
-          WERF_SET_ENV_URL: "envUrl=serg046.dev"
+          KUBE_CONFIG_BASE64_DATA: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+  
+      - name: Run werf commands
+        run: |
+          source $(werf ci-env github --as-file)
+          werf render
+          werf converge
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          WERF_ENV: production
