@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: serg046-app-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: serg046-app-deployment
