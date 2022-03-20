@@ -5,6 +5,10 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
+  tls:
+  - hosts:
+    - serg046.dev
+    secretName: tls-secret
   rules:
   - http:
       paths:
