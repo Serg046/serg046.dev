@@ -10,7 +10,8 @@ spec:
     - serg046.dev
     secretName: tls-secret
   rules:
-  - http:
+  - host: serg046.dev
+    http:
       paths:
       - path: /
         pathType: Prefix
