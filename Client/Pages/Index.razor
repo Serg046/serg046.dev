@@ -4,6 +4,8 @@
 @inject IOptions<AppSettings> AppSettings
 
 <h1>Hello, world!</h1>
+<p><b>CurrentCulture</b>: @System.Globalization.CultureInfo.CurrentCulture</p>
+<p><b>Date</b>: @DateTime.Now</p>
 <p>See my contributions in 2020:</p>
 @if (_contributionsCollection?.PullRequestContributions?.Nodes != null)
 {
