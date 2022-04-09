@@ -15,6 +15,7 @@ else
 	app.UseExceptionHandler("/Error");
 }
 
+app.UseRequestLocalization("ru-RU");
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 app.UseRouting();
