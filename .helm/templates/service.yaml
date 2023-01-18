@@ -19,6 +19,7 @@ spec:
     app: serg046-app-deployment
   ports:
   - name: first
+    port: 30001
     targetPort: 80
     nodePort: 30001
 ---
@@ -32,5 +33,6 @@ spec:
     app: serg046-app-deployment
   ports:
   - name: first
+    port: 30002
     targetPort: 80
     nodePort: 30002
