@@ -7,7 +7,7 @@
 <p>See my contributions in 2020:</p>
 @if (_contributionsCollection?.PullRequestContributions?.Nodes != null)
 {
-    @foreach (var item in _contributionsCollection.PullRequestContributions.Nodes)
+    @foreach (var item in _contributionsCollection.PullRequestContributions.Nodes.OrderByDescending(n => n.PullRequest?.Repository?.StargazerCount))
     {
         <div style="margin-bottom: 12px">
             <div>@item?.PullRequest?.CreatedAt: @item?.PullRequest?.Title</div>
