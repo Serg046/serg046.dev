@@ -4,4 +4,6 @@ A personal "NoJS" web page written in C#/Blazor and deployed to clouds via werf/
 ```code
 # Use the latest release 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.1/cert-manager.yaml
+sudo ufw allow 80
+sudo ufw allow 443
 ```
