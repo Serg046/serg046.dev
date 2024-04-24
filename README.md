@@ -1,4 +1,4 @@
-# serg046.dev
+# serg046.dev 
 A personal "NoJS" web page written in C#/Blazor and deployed to clouds via werf/k3s
 
 ```code
