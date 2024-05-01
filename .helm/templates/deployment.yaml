@@ -12,8 +12,6 @@ spec:
       labels:
         app: serg046-app-deployment
     spec:
-      imagePullSecrets:
-      - name: registrysecret
       containers:
       - name: app
         image: {{ .Values.werf.image.app }}
