@@ -1,19 +1,13 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 5005
-
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG TARGETARCH
 WORKDIR /src
-COPY /Client/Client.csproj /app/Client/Client.csproj
-COPY /Server/Server.csproj /app/Server/Server.csproj
-RUN dotnet restore /app/Client/Client.csproj && dotnet restore /app/Server/Server.csproj
+COPY *.csproj .
+RUN dotnet restore -a $TARGETARCH
 COPY . .
-RUN dotnet build -c Release -o /app/build
+RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
-FROM build AS publish
-RUN dotnet publish -c Release -o /app/publish
-
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Server.dll"]
+COPY --from=build /app .
+EXPOSE 5005
+ENTRYPOINT ["./Server.dll"]
