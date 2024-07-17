@@ -3,9 +3,9 @@ ARG TARGETARCH
 WORKDIR /src
 COPY /Client/Client.csproj /app/Client/Client.csproj
 COPY /Server/Server.csproj /app/Server/Server.csproj
-RUN dotnet restore /app/Client/Client.csproj -a $TARGETARCH && dotnet restore /app/Server/Server.csproj -a $TARGETARCH
+#RUN dotnet restore /app/Client/Client.csproj -a $TARGETARCH && dotnet restore /app/Server/Server.csproj -a $TARGETARCH
 COPY . .
-RUN dotnet publish --no-restore --self-contained false --property:OutputPath=/app
+RUN dotnet publish --self-contained false --property:OutputPath=/app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
