@@ -32,7 +32,7 @@ jobs:
         run: |
           source $(werf ci-env github --as-file)
           werf render --dev
-          werf converge --dev
+          werf converge --dev --platform linux/arm64
         env:
           GITHUB_TOKEN: ${{ github.token }}
           WERF_ENV: production
