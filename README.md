@@ -1,5 +1,5 @@
 # serg046.dev
-A personal "NoJS" web page written in C#/Blazor and deployed to clouds via werf/k3s
+A personal "NoJS" web page written in C#/Blazor deployed via werf/k3s
 
 ```code
 kubectl create secret docker-registry registrysecret --docker-server=ghcr.io --docker-username=Serg046 --docker-password=pass --docker-email=serg046@outlook.com -n serg046-app-production
