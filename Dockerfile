@@ -5,7 +5,7 @@ COPY /Client/Client.csproj /app/Client/Client.csproj
 COPY /Server/Server.csproj /app/Server/Server.csproj
 RUN dotnet restore /app/Client/Client.csproj -a $TARGETARCH && dotnet restore /app/Server/Server.csproj -a $TARGETARCH
 COPY . .
-RUN dotnet publish --no-restore -o /app -a $TARGETARCH
+RUN dotnet publish --no-restore -o /app -a $TARGETARCH --self-contained false
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
