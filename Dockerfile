@@ -1,8 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 5005
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY /Client/Client.csproj /app/Client/Client.csproj
 COPY /Server/Server.csproj /app/Server/Server.csproj
