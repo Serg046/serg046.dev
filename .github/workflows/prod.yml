@@ -3,14 +3,17 @@ on:
   push:
     branches: [master]
 jobs:
-  converge:
-    name: Converge
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
           
       - name: Inject GH secret
         env:
