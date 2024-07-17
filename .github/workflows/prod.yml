@@ -31,7 +31,7 @@ jobs:
       - name: Run script
         run: |
           . $(werf ci-env github --as-file) 
-          werf converge --dev
+          werf converge --platform linux/arm64 --dev
         env:
           GITHUB_TOKEN: ${{ github.token }}
           WERF_ENV: production
