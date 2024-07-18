@@ -46,6 +46,17 @@ jobs:
         env:
           KUBE_CONFIG_BASE64_DATA: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
 
+      - name: Install werf
+        uses: werf/actions/install@v2
+      
+      - name: Run script
+        run: |
+          . $(werf ci-env github --as-file) 
+          werf converge --platform linux/arm64 --dev --verbose
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          WERF_ENV: production
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
