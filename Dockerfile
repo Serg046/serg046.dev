@@ -1,7 +1,8 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim-arm32v7 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim-arm64v7 AS build
+ARG TARGETARCH
 RUN dotnet workload install wasm-tools
 COPY . .
-RUN dotnet publish
+RUN dotnet publish -a $TARGETARCH
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
