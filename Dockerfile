@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine3.19-arm64v8 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim-arm64v8 AS build
 RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish
