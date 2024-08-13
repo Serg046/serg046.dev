@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0.303-bookworm-slim-arm64v8 AS build
+RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish
 
