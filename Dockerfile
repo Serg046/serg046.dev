@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine-arm64v8 AS build
 RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish
