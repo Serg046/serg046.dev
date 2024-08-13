@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish Server/Server.csproj -a arm64
 
