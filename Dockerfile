@@ -1,6 +1,5 @@
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine-arm64v8 AS build
 ARG TARGETARCH
-RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish Server/Server.csproj -a $TARGETARCH
 
