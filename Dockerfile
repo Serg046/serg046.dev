@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0.303-bookworm-slim-arm64v8 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 RUN dotnet workload install wasm-tools
 COPY . .
 RUN dotnet publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0.7-bookworm-slim-arm64v8
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /Server/bin/Release/net8.0/*/publish/ .
 EXPOSE 5005
