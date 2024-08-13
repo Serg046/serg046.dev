@@ -1,5 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-alpine-arm64v8 AS build
-ARG TARGETARCH
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 COPY . .
 RUN dotnet publish Server/Server.csproj -r linux-arm64
 
