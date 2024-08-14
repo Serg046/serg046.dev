@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim-arm64v8 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 COPY . .
 RUN dotnet publish Server/Server.csproj -a arm64
 
