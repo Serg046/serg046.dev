@@ -2,6 +2,6 @@
 {
 	public class AppSettings
 	{
-		public string GitHubToken { get; set; } = string.Empty;
+		public string GitHubToken { get; init; } = string.Empty;
 	}
 }
