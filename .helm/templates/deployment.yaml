@@ -18,4 +18,4 @@ spec:
       - name: app
         image: ghcr.io/serg046/serg046.dev/serg046-app:latest
         ports:
-        - containerPort: 5005
+        - containerPort: 8080
