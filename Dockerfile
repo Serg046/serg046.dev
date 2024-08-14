@@ -5,5 +5,5 @@ RUN dotnet publish Server/Server.csproj -a arm64
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim-arm64v8
 WORKDIR /app
 COPY --from=build /Server/bin/Release/net8.0/*/publish/ .
-EXPOSE 5005
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "./Server.dll"]
