@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: ghcr.io/serg046/serg046.dev/serg046-app:test
+          tags: ghcr.io/serg046/serg046.dev/serg046-app:latest
           platforms: linux/arm64
           push: true
     
@@ -55,7 +55,3 @@ jobs:
           werf converge --platform linux/arm64 --dev --verbose
         env:
           WERF_ENV: production
-
-      - name: Run script
-        run: |
-          cat Server/appsettings.json
