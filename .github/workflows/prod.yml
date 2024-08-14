@@ -30,6 +30,10 @@ jobs:
           username: Serg046
           password: ${{ secrets.GIT_HUB_TOKEN }}
 
+      - name: Run script 2
+        run: |
+          cat Server/appsettings.json
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
