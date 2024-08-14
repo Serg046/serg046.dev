@@ -16,6 +16,6 @@ spec:
       - name: registrysecret
       containers:
       - name: app
-        image: {{ .Values.werf.image.app }}
+        image: ghcr.io/serg046/serg046.dev/serg046-app:latest
         ports:
         - containerPort: 5005
