@@ -13,11 +13,12 @@ jobs:
           fetch-depth: 0
 
       - name: Inject GH secret
-        uses: richardrigutins/replace-in-files@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
-          files: 'Server/appsettings.json'
-          search-text: '"GitHubToken": ""'
-          replacement-text: '"GitHubToken": "${{ secrets.GIT_HUB_TOKEN }}"'
+          include: "Server/appsettings.json"
+          find: '"GitHubToken": ""'
+          replace: '"GitHubToken": "${{ secrets.GIT_HUB_TOKEN }}"'
+          regex: false
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
