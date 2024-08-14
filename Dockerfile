@@ -1,6 +1,6 @@
 FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG TARGETARCH
-COPY *.csproj .
+COPY */*/*.csproj ./
 RUN dotnet restore Server/Server.csproj -a $TARGETARCH && dotnet restore Client/Client.csproj -a $TARGETARCH
 COPY . .
 RUN dotnet publish Server/Server.csproj -a $TARGETARCH --no-restore
