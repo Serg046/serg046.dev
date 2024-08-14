@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/serg046/serg046.dev/serg046-app:latest
+          tags: ghcr.io/serg046/serg046.dev/serg046-app:test
           platforms: linux/arm64 
     
       - name: Create kube config
