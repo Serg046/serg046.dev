@@ -17,8 +17,10 @@ jobs:
         with:
           include: "Server/appsettings.json"
           find: '"GitHubToken": ""'
-          replace: '"GitHubToken": "${{ secrets.GIT_HUB_TOKEN }}"'
+          replace: '"GitHubToken": "$GIT_HUB_TOKEN"'
           regex: false
+        env:
+          GIT_HUB_TOKEN: ${{ secrets.GIT_HUB_TOKEN }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -53,5 +55,4 @@ jobs:
           . $(werf ci-env github --as-file) 
           werf converge --platform linux/arm64 --dev --verbose
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           WERF_ENV: production
