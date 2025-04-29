@@ -37,3 +37,4 @@ jobs:
           werf converge --platform linux/arm64 --dev --verbose
         env:
           WERF_ENV: production
+          GITHUB_TOKEN: ${{ github.token }}
