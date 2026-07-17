@@ -2,7 +2,7 @@ project: serg046-app
 configVersion: 1
 build:
   platform:
-  - linux/arm64
+  - linux/amd64
 ---
 image: app
 dockerfile: Dockerfile
