@@ -3,7 +3,6 @@ kind: Ingress
 metadata:
   name: serg046-app-ingress
 spec:
-  ingressClassName: nginx
   rules:
   - http:
       paths:
