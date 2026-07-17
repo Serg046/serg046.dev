@@ -17,7 +17,7 @@ jobs:
         with:
           include: "Server/appsettings.json"
           find: '"GitHubToken": ""'
-          replace: '"GitHubToken": "${{ github.token }}"'
+          replace: '"GitHubToken": "${{ secrets.GIT_HUB_TOKEN }}"'
           regex: false
     
       - name: Create kube config
