@@ -6,7 +6,7 @@ RUN dotnet restore Server/Server.csproj -a $TARGETARCH && dotnet restore Client/
 COPY . .
 RUN dotnet publish Server/Server.csproj -a $TARGETARCH --no-restore
 
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim-arm64v8
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /Server/bin/Release/net8.0/*/publish/ .
 EXPOSE 8080
