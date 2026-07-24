@@ -1,18 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Server</RootNamespace>
+        <AssemblyName>$(AssemblyName.Replace(' ', '_'))</AssemblyName>
+        <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+      <UserSecretsId>72934897-e367-40bf-88cd-73d3fd819f3f</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Client\Client.csproj" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <ProjectReference Include="..\Client\Client.csproj" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0" />
+    </ItemGroup>
 
 </Project>

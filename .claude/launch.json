@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "serg046-web",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "Server", "--urls", "http://localhost:5282"],
+      "port": 5282
+    }
+  ]
+}
