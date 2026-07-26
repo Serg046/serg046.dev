@@ -387,7 +387,6 @@
 
     .hero {
         flex-direction: column;
-        text-align: center;
     }
 
     .hero-info {
@@ -405,11 +404,10 @@
 
     .social-links {
         flex: none;
-        justify-content: center;
     }
 
     .org-list {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .pr-browser {
