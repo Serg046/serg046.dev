@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: serg046-app-ingress
 spec:
+  tls:
+  - hosts:
+    - serg046.is-a.dev
+    secretName: tls-secret
   rules:
   - http:
       paths:
