@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - serg046.is-a.dev
+    - serg046.it
     secretName: tls-secret
   rules:
-  - host: serg046.is-a.dev
+  - host: serg046.it
     http:
       paths:
       - path: /
